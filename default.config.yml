@@ -1,0 +1,92 @@
+---
+downloads: ~/.ansible-downloads/
+
+projects_path: ~/Documents/Projects
+
+dotfiles_repository: https://github.com/YentlFrickx/dotfiles.git
+
+# files/directories located in ~/
+dotfiles: 
+  - .osx
+  - .tmux.conf
+  - .vimrc
+  - .ssh
+  - .s3cfg
+  - .s3cfg-pro
+
+# files/directories located in ~/.config/
+configfiles: 
+  - alacritty
+
+# folder name where custom aliases reside
+fish_aliases: custom-aliases
+
+homebrew_taps:
+  - homebrew/core
+  - homebrew/cask-fonts
+
+homebrew_use_brewfile: false
+homebrew_cask_apps:
+  - alacritty
+  - appcleaner
+  - betterzip
+  - clipy
+  - jd-gui
+  - ferdi
+  - font-monoid
+  - microsoft-edge
+  - microsoft-teams
+  - postman
+  - spotify
+  - vagrant
+  - virtualbox
+  - virtualbox-extension-pack
+  - visual-studio-code
+
+homebrew_installed_packages:
+  - automake
+  - ansible-lint
+  - coreutils
+  - ctop
+  - dockutil
+  # - docker Still needed?
+  # - docker-completion
+  # - docker-compose-completion
+  - fish
+  - gcc
+  - gem-completion
+  - git
+  - gnu-tar
+  - gradle
+  - groovy
+  - grunt-completion
+  - htop
+  - jenv
+  - jq
+  - k9s
+  - mas
+  - maven
+  - maven-completion
+  - node
+  - openjdk@11
+  - openshift-cli
+  - openssl
+  - packer
+  - python@3.9
+  - rancher
+  - ranger
+  - shellcheck
+  - terraform
+  - tmux
+  - tldr
+  - tree
+  - vagrant-completion
+  - watch
+  - wget
+
+omf_theme: harleen-custom
+omf_packages:
+  - z
+  - fzf
+  - https://github.com/YentlFrickx/theme-harleen-custom
+  - https://github.com/jhillyerd/plugin-git

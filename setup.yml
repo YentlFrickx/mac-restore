@@ -1,0 +1,54 @@
+- hosts: localhost
+
+  vars_files:
+    - default.config.yml
+
+  pre_tasks:
+    - name: Include playbook configuration.
+      include_vars: "{{ item }}"
+      with_fileglob:
+        - "{{ playbook_dir }}/config.yml"
+      tags: ['always']
+  
+  roles:
+    - role: elliotweiser.osx-command-line-tools
+    - role: geerlingguy.mac.homebrew
+      tags:
+        - brew
+
+  tasks:
+    - name: Checkout repository
+      ansible.builtin.git:
+        repo: '{{ dotfiles_repository }}'
+        dest: '{{ projects_path }}/dotfiles'
+        version: 'main'
+        update: yes
+      tags:
+        - dotfiles 
+        - shell
+
+    # Setup shell
+    - import_tasks: tasks/setup/shell.yml
+      tags:
+        - shell
+
+    # Import dotfiles
+    - import_tasks: tasks/setup/dotfiles.yml
+      tags:
+        - dotfiles
+
+    # Prepare for download of non-automated apps
+    - name: Prepare downloads directory
+      ansible.builtin.file:
+        path: '{{ downloads }}'
+        state: directory
+        mode: "755"
+
+    - name: "downloading Myki"
+      get_url:
+        url: "https://static.myki.com/releases/da/MYKI-latest.dmg"
+        dest: "{{ downloads }}"
+
+    - name: INFO
+      ansible.builtin.debug:
+        msg: "Downloaded station, myki dmg to: {{ downloads }}"

@@ -1,0 +1,46 @@
+- hosts: localhost
+
+  vars_files:
+    - default.config.yml
+
+  pre_tasks:
+    - name: Include playbook configuration.
+      include_vars: "{{ item }}"
+      with_fileglob:
+        - "{{ playbook_dir }}/config.yml"
+      tags: ['always']
+    
+  tasks:
+    - name: Checkout repository
+      ansible.builtin.git:
+        repo: '{{ dotfiles_repository }}'
+        dest: '{{ projects_path }}/dotfiles'
+        version: 'main'
+
+    - import_tasks: tasks/backup/backup.yml
+
+    - name: Check for changes
+      shell: 
+        cmd: "git status -s | wc -l | xargs"
+        chdir: '{{ projects_path }}/dotfiles'
+      register: changes
+      changed_when: false
+
+    - name: Get hostname
+      command: hostname
+      register: hostname
+      changed_when: false
+
+    - name: Commit changes
+      shell: 
+        cmd: 'git add . && git commit -m"Backup taken at {{ ansible_date_time.date }} {{ ansible_date_time.time }} on {{ hostname.stdout }}"'
+        chdir: '{{ projects_path }}/dotfiles'
+      changed_when: false
+      when: changes.stdout | int > 0
+
+    - name: Push changes
+      command: 
+        cmd: 'git push'
+        chdir: '{{ projects_path }}/dotfiles'
+      changed_when: false
+      when: changes.stdout | int > 0

@@ -1,0 +1,13 @@
+- name: stat {{ src }}
+  stat: path={{ src }}
+  register: statfile
+
+- name: Copy {{ src }}
+  ansible.posix.synchronize:
+    src: '{{ src }}'
+    dest: '{{ dest }}'
+    perms: true
+    delete: true
+    recursive: true
+  delegate_to: "{{ inventory_hostname }}"
+  when: statfile.stat.exists 

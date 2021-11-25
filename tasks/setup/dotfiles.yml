@@ -1,0 +1,35 @@
+- include: ../copy.yml 
+    dest=~/
+    src='{{ projects_path }}/dotfiles/{{ item }}'
+  with_items: '{{ dotfiles }}'
+
+- name: Prepare .config directory
+  ansible.builtin.file:
+    path: '{{ projects_path }}/dotfiles/.config'
+    state: directory
+    mode: "755"
+
+- include: ../copy.yml 
+    dest=~/.config/{{ item }}
+    src='{{ projects_path }}/dotfiles/.config/{{ item }}'
+  with_items: '{{ configfiles }}'
+
+- include: ../copy.yml 
+    dest=~/.config/fish
+    src='{{ projects_path }}/dotfiles/{{ fish_aliases }}'
+
+- name: Setup source of aliases
+  template:
+    src: "custom-aliases.fish.j2"  
+    dest: "~/.config/fish/conf.d/{{ fish_aliases }}.fish"  
+    mode: "755"
+
+# Set .osx defaults
+- name: "Set defaults"
+  command: "~/.osx"
+  changed_when: false
+
+# Clear all items from the dock
+- name: "Clear dock"
+  command: "dockutil --remove all"
+  changed_when: false

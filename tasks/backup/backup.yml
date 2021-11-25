@@ -1,0 +1,19 @@
+- include: ../copy.yml 
+    src=~/{{ item }}
+    dest='{{ projects_path }}/dotfiles'
+  with_items: '{{ dotfiles }}'
+
+- name: Prepare .config directory
+  ansible.builtin.file:
+    path: '{{ projects_path }}/dotfiles/.config'
+    state: directory
+    mode: "755"
+
+- include: ../copy.yml 
+    src=~/.config/{{ item }}
+    dest='{{ projects_path }}/dotfiles/.config'
+  with_items: '{{ configfiles }}'
+
+- include: ../copy.yml 
+    src={{ fish_aliases }}
+    dest='{{ projects_path }}/dotfiles/fish_aliases'
