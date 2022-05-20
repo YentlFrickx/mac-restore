@@ -14,16 +14,6 @@
     src='{{ projects_path }}/dotfiles/.config/{{ item }}'
   with_items: '{{ configfiles }}'
 
-- include: ../copy.yml 
-    dest=~/.config/fish
-    src='{{ projects_path }}/dotfiles/{{ fish_aliases }}'
-
-- name: Setup source of aliases
-  template:
-    src: "custom-aliases.fish.j2"  
-    dest: "~/.config/fish/conf.d/{{ fish_aliases }}.fish"  
-    mode: "755"
-
 # Set .osx defaults
 - name: "Set defaults"
   command: "~/.osx"
