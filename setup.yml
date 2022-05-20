@@ -37,18 +37,4 @@
       tags:
         - dotfiles
 
-    # Prepare for download of non-automated apps
-    - name: Prepare downloads directory
-      ansible.builtin.file:
-        path: '{{ downloads }}'
-        state: directory
-        mode: "755"
 
-    - name: "downloading Myki"
-      get_url:
-        url: "https://static.myki.com/releases/da/MYKI-latest.dmg"
-        dest: "{{ downloads }}"
-
-    - name: INFO
-      ansible.builtin.debug:
-        msg: "Downloaded station, myki dmg to: {{ downloads }}"
