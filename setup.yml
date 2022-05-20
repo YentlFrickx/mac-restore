@@ -25,13 +25,7 @@
         update: yes
       tags:
         - dotfiles 
-        - shell
-
-    # Setup shell
-    - import_tasks: tasks/setup/shell.yml
-      tags:
-        - shell
-
+        
     # Import dotfiles
     - import_tasks: tasks/setup/dotfiles.yml
       tags:
