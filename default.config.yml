@@ -11,6 +11,7 @@ dotfiles:
   - .tmux.conf
   - .vimrc
   - .ssh
+  - .zshrc
 
 homebrew_taps:
   - homebrew/core
