@@ -20,17 +20,17 @@ homebrew_taps:
 homebrew_use_brewfile: false
 homebrew_cask_apps:
   - 1password
+  - alt-tab
   - appcleaner
   - betterzip
   - clipy
   - jd-gui
   - kitty
-  - ferdi
+  - notion
   - font-monoid
   - microsoft-edge
   - postman
   - spotify
-  - vagrant
   - visual-studio-code
 
 homebrew_installed_packages:
