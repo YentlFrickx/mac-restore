@@ -30,6 +30,7 @@ homebrew_cask_apps:
   - font-monoid
   - microsoft-edge
   - postman
+  - slack
   - spotify
   - visual-studio-code
 
