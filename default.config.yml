@@ -5,6 +5,9 @@ projects_path: ~/Documents/Projects
 
 dotfiles_repository: https://github.com/YentlFrickx/dotfiles.git
 
+configfiles:
+  - iterm2
+
 # files/directories located in ~/
 dotfiles: 
   - .osx
