@@ -27,8 +27,8 @@ homebrew_cask_apps:
   - appcleaner
   - betterzip
   - clipy
+  - iterm2
   - jd-gui
-  - kitty
   - notion
   - font-monoid
   - microsoft-edge
