@@ -27,10 +27,11 @@ homebrew_cask_apps:
   - appcleaner
   - betterzip
   - clipy
+  - font-monoid
   - iterm2
   - jd-gui
   - notion
-  - font-monoid
+  - messenger
   - microsoft-edge
   - postman
   - slack
