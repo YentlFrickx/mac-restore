@@ -55,6 +55,7 @@ homebrew_installed_packages:
   - jenv
   - jq
   - k9s
+  - logitech-options
   - mas
   - maven
   - maven-completion
